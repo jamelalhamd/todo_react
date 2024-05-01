@@ -1,50 +1,41 @@
 import * as React from 'react';
-
 import Card from '@mui/material/Card';
-
+import './App.css';
 import CardContent from '@mui/material/CardContent';
-
 import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Unstable_Grid2';
+import Grid from '@mui/material/Grid';
 import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
 import DoneIcon from '@mui/icons-material/Done';
-export default function Todo() {
+
+export default function Todo( {titel ,task,iscopleted=false}) {
   return (
-    <Card sx={{ backgroundColor:'#283593' ,color:'white ', minWidth:275 }}>
+    <Card className='todocard' sx={{ backgroundColor: '#283593', color: 'white', minWidth: 275 }}>
       <CardContent>
-
-
-
-        <Grid container spacing={2}     >
-        <Grid item xs={4} display="flex" justifyContent="space-around" alignItems="center" >
-      
-       <IconButton aria-label="delete" style={{color:'#8bc34a' ,backgroundColor:'white',border:'solid #8bc34a 3px'}}>
-       <DeleteIcon />
-      </IconButton>
-
-      <IconButton aria-label="delete"  style={{color:'#8bc34a' ,backgroundColor:'white',border:'solid #8bc34a 3px'}}>
-       <EditIcon />
-      </IconButton>
-
-      <IconButton aria-label="delete"  style={{color:'#8bc34a' ,backgroundColor:'white',border:'solid #8bc34a 3px'}}>
-       <DoneIcon />
-      </IconButton>
+        <Grid container spacing={2}>
+          <Grid item xs={4} display="flex" justifyContent="space-around" alignItems="center">
+          <IconButton  className="iconbutton" aria-label="delete" style={{ color: '#8bc34a', backgroundColor: 'white', border: 'solid #8bc34a 3px'  }} >   
+              <DeleteIcon />
+            </IconButton>
+            <IconButton className="iconbutton" aria-label="edit" style={{ color: '#8bc34a', backgroundColor: 'white', border: 'solid #8bc34a 3px'  }}>
+              <EditIcon />
+            </IconButton>
+            <IconButton className='iconbutton' aria-label="done" style={{ color: '#8bc34a', backgroundColor: 'white', border: 'solid #8bc34a 3px' }}>
+              <DoneIcon />
+            </IconButton>
+          </Grid>
+          <Grid item xs={8}>
+            <Typography variant='h5' style={{ textAlign: "right" }}>
+              {titel}
+            </Typography>
+        
+            <Typography variant='h6' style={{ textAlign: "right" }}>
+              {task}
+            </Typography>
+          </Grid>
         </Grid>
-        <Grid item xs={8}  >
-        <Typography  variant='h5' style={{textAlign:"right"}} >
-          Word of the Day
-        </Typography>
-        </Grid>
-      
-      </Grid>
-
-
-  
-    
       </CardContent>
-    
     </Card>
   );
 }
