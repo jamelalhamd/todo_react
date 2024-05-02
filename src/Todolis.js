@@ -11,23 +11,26 @@ import Togglegroup  from './Toggalegroup';
 import TextField from '@mui/material/TextField';
 import Todo from './Todo';
 import Button from '@mui/material/Button';
-import { Margin } from '@mui/icons-material';
-import { v4 as uuidv4, v4 } from 'uuid';export default function Todolist() {
+import { useState } from 'react';
+import { v4 as uuidv4} from 'uuid';
+
+export default function Todolist() {
 
 const todos=[
 { id: uuidv4() , title: 'Todolist', task: 'Todolist tasks' ,iscompleted :false},
 { id:uuidv4()  , title: 'Todolist', task: 'Todolist tasks' ,iscompleted :false},
 { id:uuidv4() , title: 'Todolist', task: 'Todolist tasks' ,iscompleted :false},
 { id:uuidv4()  , title: 'Todolist', task: 'Todolist tasks' ,iscompleted :false},
-{ id:uuidv4()  , title: 'Todolist', task: 'Todolist tasks' ,iscompleted :false},
+
 ]
 
-
-const todolist = todos.map((t) => (
+ const [todosarray,settodoarry]=useState(todos);
+ const todolist = todosarray.map((t) => (
     <div key={t.id}><Todo titel={t.title} task={t.task} iscompleted={t.iscompleted} /></div>
   ));
   
 
+  const [addtask,setaddtask]=useState('');
   return (
     <React.Fragment>
       <CssBaseline />
@@ -50,10 +53,33 @@ const todolist = todos.map((t) => (
 
       <Grid container spacing={2} style={{marginTop:'20px'}}>
   <Grid xs={8}>
-  <TextField id="outlined-basic" label="Ihre Aufgabe" variant="outlined" style={{width:'100%'}} />
+  <TextField
+  
+   onChange={(e)=>{
+     setaddtask(e.target.value);
+   
+
+   }}
+   value={addtask}
+  id="outlined-basic" label="Ihre Aufgabe" variant="outlined" style={{width:'100%'}} />
   </Grid>
   <Grid xs={4}>
-  <Button variant="contained" style={{width:'100%' ,height:'100%'}}>Add Task </Button >
+  <Button
+  onClick={()=>{
+    const newtask={
+        id:uuidv4(),
+        title:addtask,
+        task:'',
+        iscompleted:false
+
+
+    }
+      settodoarry([...todosarray,newtask]);
+      setaddtask('');
+
+  }}
+  
+  variant="contained" style={{width:'100%' ,height:'100%'}}>Add Task </Button >
   </Grid>
 
 </Grid>
