@@ -19,20 +19,11 @@ export default function Todolist() {
 const {todosarray,settodoarry}=React.useContext(todocontext);
 
  const todolist = todosarray.map((t) => (
-    <div key={t.id}><Todo todo={t} handclick={handckick}/>    </div>
+    <div key={t.id}><Todo todo={t} />    </div>
   ));
   
 
-  function handckick(todoid) {
-    const updatedTodos = todosarray.map((t) => {
-      if (t.id === todoid) {
-       t.iscompleted= !t.iscompleted; 
-      }
-      return t;
-    });
-  
-    settodoarry(updatedTodos);
-  }
+
   
   
 

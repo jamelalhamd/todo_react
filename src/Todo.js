@@ -8,8 +8,24 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
 import DoneIcon from '@mui/icons-material/Done';
+import { todocontext } from './Context/Todocontext';
+export default function Todo( {todo}) {
 
-export default function Todo( {todo,handclick}) {
+  const {todosarray,settodoarry}=React.useContext(todocontext);
+
+  function handckick() {
+    const updatedTodos = todosarray.map((t) => {
+      if (t.id === todo.id) {
+       t.iscompleted= !t.iscompleted; 
+      }
+      return t;
+    });
+
+
+    settodoarry(updatedTodos);
+  }
+
+
   return (
     <Card className='todocard' sx={{ backgroundColor: '#283593', color: 'white', minWidth: 275 }}>
       <CardContent>
@@ -21,7 +37,7 @@ export default function Todo( {todo,handclick}) {
             <IconButton className="iconbutton" aria-label="edit" style={{ color: '#8bc34a', backgroundColor: 'white', border: 'solid #8bc34a 3px'  }}>
               <EditIcon />
             </IconButton>
-            <IconButton onClick={ ()=>{handclick(todo.id)} } className='iconbutton' aria-label="done" style={{ color: '#8bc34a', backgroundColor: todo.iscompleted ? 'green' : 'white', border: 'solid #8bc34a 3px' }}>
+            <IconButton onClick={ ()=>{handckick()} } className='iconbutton' aria-label="done" style={{ color: '#8bc34a', backgroundColor: todo.iscompleted ? 'green' : 'white', border: 'solid #8bc34a 3px' }}>
               <DoneIcon />
             </IconButton>
           </Grid>
