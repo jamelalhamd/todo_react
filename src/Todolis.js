@@ -26,9 +26,23 @@ const todos=[
 
  const [todosarray,settodoarry]=useState(todos);
  const todolist = todosarray.map((t) => (
-    <div key={t.id}><Todo titel={t.title} task={t.task} iscompleted={t.iscompleted} /></div>
+    <div key={t.id}><Todo todo={t} handclick={handckick}/>    </div>
   ));
   
+
+  function handckick(todoid) {
+    const updatedTodos = todosarray.map((t) => {
+      if (t.id === todoid) {
+       t.iscompleted= !t.iscompleted; 
+      }
+      return t;
+    });
+  
+    settodoarry(updatedTodos);
+  }
+  
+  
+
 
   const [addtask,setaddtask]=useState('');
   return (
