@@ -13,18 +13,11 @@ import Todo from './Todo';
 import Button from '@mui/material/Button';
 import { useState } from 'react';
 import { v4 as uuidv4} from 'uuid';
-
+import { todocontext } from './Context/Todocontext';
 export default function Todolist() {
+  
+const {todosarray,settodoarry}=React.useContext(todocontext);
 
-const todos=[
-{ id: uuidv4() , title: 'Todolist', task: 'Todolist tasks' ,iscompleted :false},
-{ id:uuidv4()  , title: 'Todolist', task: 'Todolist tasks' ,iscompleted :false},
-{ id:uuidv4() , title: 'Todolist', task: 'Todolist tasks' ,iscompleted :false},
-{ id:uuidv4()  , title: 'Todolist', task: 'Todolist tasks' ,iscompleted :false},
-
-]
-
- const [todosarray,settodoarry]=useState(todos);
  const todolist = todosarray.map((t) => (
     <div key={t.id}><Todo todo={t} handclick={handckick}/>    </div>
   ));

@@ -1,7 +1,26 @@
 
 import './App.css';
+import { useState } from 'react';
+import { v4 as uuidv4} from 'uuid'; 
+import { useContext } from 'react';
+import {todocontext} from './Context/Todocontext';
 import Todolist from './Todolis';
 function App() {
+
+
+  const todos=[
+    { id: uuidv4() , title: 'Todolist', task: 'Todolist tasks' ,iscompleted :false},
+    { id:uuidv4()  , title: 'Todolist', task: 'Todolist tasks' ,iscompleted :false},
+    { id:uuidv4() , title: 'Todolist', task: 'Todolist tasks' ,iscompleted :false},
+    { id:uuidv4()  , title: 'Todolist', task: 'Todolist tasks' ,iscompleted :false},
+    
+    ]
+    
+     const [todosarray,settodoarry]=useState(todos);
+
+     
+
+
   return (
     <div className="App" style={{display:'flex',
     justifyContent:'center',
@@ -12,7 +31,10 @@ function App() {
     
     }} >
     
+ <todocontext.Provider  value={{todosarray,settodoarry}}> 
     <Todolist/>
+    
+    </todocontext.Provider>
 
 
 
