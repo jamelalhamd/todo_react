@@ -9,10 +9,10 @@ function App() {
 
 
   const todos=[
-    { id: uuidv4() , title: 'Todolist', task: 'Todolist tasks' ,iscompleted :false},
-    { id:uuidv4()  , title: 'Todolist', task: 'Todolist tasks' ,iscompleted :false},
-    { id:uuidv4() , title: 'Todolist', task: 'Todolist tasks' ,iscompleted :false},
-    { id:uuidv4()  , title: 'Todolist', task: 'Todolist tasks' ,iscompleted :false},
+    { id: uuidv4() , title: '', task: 'Todolist tasks' ,iscompleted :false},
+    { id:uuidv4()  , title: '', task: 'Todolist tasks' ,iscompleted :false},
+    { id:uuidv4() , title: '', task: 'Todolist tasks' ,iscompleted :false},
+    { id:uuidv4()  , title: '', task: 'Todolist tasks' ,iscompleted :false},
     
     ]
     

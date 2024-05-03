@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Card from '@mui/material/Card';
 import './App.css';
+import TextField from '@mui/material/TextField';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
@@ -47,10 +48,99 @@ settodoarry(updateedtodo);
 
 }
 
+function showupdatedialogfunction()
+{
+
+setshowupdatedialog(true);
+
+}
+function closeupdatedialogfunction()
+{
+
+setshowupdatedialog(false);
+
+}
+const [showupdatedialog,setshowupdatedialog]=React.useState(false);
+const [newtask,setnewtask]=React.useState(todo.task);
 
   return (
     <Card className='todocard' sx={{ backgroundColor: '#283593', color: 'white', minWidth: 275 }}>
       <CardContent>
+
+
+
+      <Dialog
+        open={showupdatedialog}
+        onClose={closeupdatedialogfunction}
+        PaperProps={{
+        
+          onSubmit: () => {
+           
+          
+          },
+        }}
+      >
+        <DialogTitle>Subscribe</DialogTitle>
+        <DialogContent>
+          <DialogContentText style={{color:'black'}}>
+           Are you sure that you want to update the Task?
+          </DialogContentText>
+          <TextField
+          
+            autoFocus
+            onChange={(e)=>{
+              const newTaskValue = e.target.value;
+            
+              // Update the newtask state
+              setnewtask(newTaskValue);
+            
+              // Update the task property of the corresponding task in todosarray
+              
+            }}
+            value={newtask}
+            required
+            margin="dense"
+            id="name"
+            name="email"
+            label="Task"
+            type="email"
+            fullWidth
+            variant="standard"
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={closeupdatedialogfunction}>Cancel</Button>
+          <Button
+           onClick={()=>{
+          
+            const updatedTodos = todosarray.map((t) => {
+              if (t.id === todo.id) {
+                return { ...t, task: newtask };
+              }
+              return t;
+            });
+          
+            // Update the todosarray state with the updated task
+            settodoarry(updatedTodos);
+        
+          
+              setshowupdatedialog(false);
+
+
+
+           }}
+           
+          type="submit">Confirm</Button>
+        </DialogActions>
+      </Dialog>
+
+
+
+
+
+
+
+
 
       <Dialog
         open={showdeletedialog}
@@ -82,7 +172,7 @@ settodoarry(updateedtodo);
            }}   className="iconbutton" aria-label="delete" style={{ color: '#8bc34a', backgroundColor: 'white', border: 'solid #8bc34a 3px'  }} >   
               <DeleteIcon />
             </IconButton>
-            <IconButton className="iconbutton" aria-label="edit" style={{ color: '#8bc34a', backgroundColor: 'white', border: 'solid #8bc34a 3px'  }}>
+            <IconButton onClick={showupdatedialogfunction}  className="iconbutton" aria-label="edit" style={{ color: '#8bc34a', backgroundColor: 'white', border: 'solid #8bc34a 3px'  }}>
               <EditIcon />
             </IconButton>
             <IconButton onClick={ ()=>{handckick()} } className='iconbutton' aria-label="done" style={{ color: '#8bc34a', backgroundColor: todo.iscompleted ? 'green' : 'white', border: 'solid #8bc34a 3px' }}>
