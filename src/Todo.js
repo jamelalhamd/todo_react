@@ -8,6 +8,12 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
 import DoneIcon from '@mui/icons-material/Done';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import Button from '@mui/material/Button';
 import { todocontext } from './Context/Todocontext';
 export default function Todo( {todo}) {
 
@@ -25,13 +31,55 @@ export default function Todo( {todo}) {
     settodoarry(updatedTodos);
   }
 
+  function closedialog(){
+
+    setshowdeletedialog(false);
+    
+     }
+
+const [showdeletedialog,setshowdeletedialog]=React.useState(false);
+
+function deletetask(){
+
+const updateedtodo=todosarray.filter((t) => { return t.id !== todo.id; });
+
+settodoarry(updateedtodo);
+
+}
+
 
   return (
     <Card className='todocard' sx={{ backgroundColor: '#283593', color: 'white', minWidth: 275 }}>
       <CardContent>
+
+      <Dialog
+        open={showdeletedialog}
+        onClose={closedialog}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          {"Are you sure that you want to delet the Task?"}
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+        wenn Task lost ,sie kann nich zuruck!!
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={closedialog}>Close</Button>
+          <Button  onClick={deletetask}    autoFocus>
+         ja,Delete
+          </Button>
+        </DialogActions>
+      </Dialog>
+
         <Grid container spacing={2}>
           <Grid item xs={4} display="flex" justifyContent="space-around" alignItems="center">
-          <IconButton    className="iconbutton" aria-label="delete" style={{ color: '#8bc34a', backgroundColor: 'white', border: 'solid #8bc34a 3px'  }} >   
+          <IconButton  onClick={()=>{
+          setshowdeletedialog(true); //
+
+           }}   className="iconbutton" aria-label="delete" style={{ color: '#8bc34a', backgroundColor: 'white', border: 'solid #8bc34a 3px'  }} >   
               <DeleteIcon />
             </IconButton>
             <IconButton className="iconbutton" aria-label="edit" style={{ color: '#8bc34a', backgroundColor: 'white', border: 'solid #8bc34a 3px'  }}>
