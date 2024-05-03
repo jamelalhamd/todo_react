@@ -33,7 +33,7 @@ const {todosarray,settodoarry}=React.useContext(todocontext);
     <React.Fragment>
       <CssBaseline />
       <Container maxWidth="sm">
-      <Card sx={{ minWidth: 275 }}>
+      <Card sx={{ minWidth: 275  ,height:'100%'}}>
       <CardContent>
         <Typography variant="h2"  color="black" gutterBottom>
         My tasks
@@ -72,9 +72,11 @@ const {todosarray,settodoarry}=React.useContext(todocontext);
 
 
     }
-      settodoarry([...todosarray,newtask]);
+    const updatetodosarray=[...todosarray,newtask];
+      settodoarry(updatetodosarray);
       setaddtask('');
-
+      localStorage.setItem('todosarray',JSON.stringify(updatetodosarray));
+;
   }}
   
   variant="contained" style={{width:'100%' ,height:'100%'}}>Add Task </Button >

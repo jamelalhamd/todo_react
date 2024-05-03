@@ -1,13 +1,17 @@
 
 import './App.css';
 import { useState } from 'react';
-import { v4 as uuidv4} from 'uuid'; 
+//import { v4 as uuidv4} from 'uuid'; 
 
 import {todocontext} from './Context/Todocontext';
 import Todolist from './Todolis';
 function App() {
 
 
+ 
+  const todos = JSON.parse(localStorage.getItem('todosarray'));
+
+/*
   const todos=[
     { id: uuidv4() , title: '', task: 'Todolist tasks' ,iscompleted :false},
     { id:uuidv4()  , title: '', task: 'Todolist tasks' ,iscompleted :false},
@@ -15,7 +19,7 @@ function App() {
     { id:uuidv4()  , title: '', task: 'Todolist tasks' ,iscompleted :false},
     
     ]
-    
+    */
      const [todosarray,settodoarry]=useState(todos);
 
      
@@ -26,7 +30,7 @@ function App() {
     justifyContent:'center',
     alignItems:'center' ,
     background:"#191b1f" ,
-    height:'100vh' ,
+
  
     
     }} >
