@@ -15,7 +15,8 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Button from '@mui/material/Button';
-import { todocontext } from './Context/Todocontext';
+import { todocontext ,} from './Context/Todocontext'
+import { useEffect } from 'react';
 export default function Todo( {todo}) {
 
   const {todosarray,settodoarry}=React.useContext(todocontext);
@@ -30,6 +31,7 @@ export default function Todo( {todo}) {
 
 
     settodoarry(updatedTodos);
+    localStorage.setItem('todosarray',JSON.stringify(updatedTodos));
   }
 
   function closedialog(){
@@ -46,6 +48,11 @@ const updateedtodo=todosarray.filter((t) => { return t.id !== todo.id; });
 
 settodoarry(updateedtodo);
 
+
+
+
+localStorage.setItem('todosarray',JSON.stringify(updateedtodo));
+
 }
 
 function showupdatedialogfunction()
@@ -61,8 +68,12 @@ setshowupdatedialog(false);
 
 }
 const [showupdatedialog,setshowupdatedialog]=React.useState(false);
-const [newtask,setnewtask]=React.useState(todo.task);
+const [newtask,setnewtask]=React.useState(todo.title);
+    useEffect(() =>{
 
+
+
+    });
   return (
     <Card className='todocard' sx={{ backgroundColor: '#283593', color: 'white', minWidth: 275 }}>
       <CardContent>
@@ -115,7 +126,7 @@ const [newtask,setnewtask]=React.useState(todo.task);
           
             const updatedTodos = todosarray.map((t) => {
               if (t.id === todo.id) {
-                return { ...t, task: newtask };
+                return { ...t, title: newtask };
               }
               return t;
             });
@@ -125,7 +136,8 @@ const [newtask,setnewtask]=React.useState(todo.task);
         
           
               setshowupdatedialog(false);
-
+         
+              localStorage.setItem('todosarray',JSON.stringify(updatedTodos));
 
 
            }}
@@ -167,7 +179,13 @@ const [newtask,setnewtask]=React.useState(todo.task);
         <Grid container spacing={2}>
           <Grid item xs={4} display="flex" justifyContent="space-around" alignItems="center">
           <IconButton  onClick={()=>{
-          setshowdeletedialog(true); //
+
+
+
+
+          setshowdeletedialog(true); 
+          
+       
 
            }}   className="iconbutton" aria-label="delete" style={{ color: '#8bc34a', backgroundColor: 'white', border: 'solid #8bc34a 3px'  }} >   
               <DeleteIcon />
@@ -175,7 +193,12 @@ const [newtask,setnewtask]=React.useState(todo.task);
             <IconButton onClick={showupdatedialogfunction}  className="iconbutton" aria-label="edit" style={{ color: '#8bc34a', backgroundColor: 'white', border: 'solid #8bc34a 3px'  }}>
               <EditIcon />
             </IconButton>
-            <IconButton onClick={ ()=>{handckick()} } className='iconbutton' aria-label="done" style={{ color: '#8bc34a', backgroundColor: todo.iscompleted ? 'green' : 'white', border: 'solid #8bc34a 3px' }}>
+            <IconButton onClick={ ()=>{
+              
+              
+
+
+              handckick()} } className='iconbutton' aria-label="done" style={{ color: '#8bc34a', backgroundColor: todo.iscompleted ? 'green' : 'white', border: 'solid #8bc34a 3px' }}>
               <DoneIcon />
             </IconButton>
           </Grid>

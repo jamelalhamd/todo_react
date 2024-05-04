@@ -1,5 +1,5 @@
 import * as React from 'react';
-
+import './App.css'
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 
@@ -15,13 +15,13 @@ export default function Togglegroup() {
 
       aria-label="text alignment"
     >
-      <ToggleButton value="left" aria-label="left aligned">
+      <ToggleButton  className='toggle'   value="left" aria-label="left aligned">
    Done
       </ToggleButton>
-      <ToggleButton value="center" aria-label="centered">
+      <ToggleButton className='toggle'value="center" aria-label="centered">
     Edit
       </ToggleButton>
-      <ToggleButton value="right" aria-label="right aligned">
+      <ToggleButton className='toggle' value="right" aria-label="right aligned">
 
 All
       </ToggleButton>
