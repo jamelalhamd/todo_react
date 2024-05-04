@@ -203,11 +203,11 @@ const [newtask,setnewtask]=React.useState(todo.title);
             </IconButton>
           </Grid>
           <Grid item xs={8}>
-            <Typography variant='h5' style={{ textAlign: "right" }}>
+            <Typography variant='h5' style={{ textAlign: "right" ,textDecoration: todo.iscompleted?  'line-through':'' }}>
               {todo.title}
             </Typography>
         
-            <Typography variant='h6' style={{ textAlign: "right" }}>
+            <Typography variant='h6' style={{ textAlign: "right",textDecoration: 'line-through' }}>
               {todo.task}
             </Typography>
           </Grid>

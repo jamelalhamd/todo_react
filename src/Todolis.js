@@ -19,7 +19,7 @@ export default function Todolist() {
 const {todosarray,settodoarry}=React.useContext(todocontext);
 
  const todolist = todosarray.map((t) => (
-    <div key={t.id}><Todo todo={t} />    </div>
+    <div     key={t.id}><Todo todo={t} />    </div>
   ));
   
 
@@ -33,7 +33,10 @@ const {todosarray,settodoarry}=React.useContext(todocontext);
     <React.Fragment>
       <CssBaseline />
       <Container maxWidth="sm">
-      <Card sx={{ minWidth: 275  ,height:'100%'}}>
+      <Card sx={{ minWidth: 275
+          ,maxHeight:'80vh',
+          overflow:"scroll"
+         }}>
       <CardContent>
         <Typography variant="h2"  color="black" gutterBottom>
         My tasks
@@ -45,7 +48,7 @@ const {todosarray,settodoarry}=React.useContext(todocontext);
 
 
 
-   {todolist}
+ {todolist}
 
 
 
@@ -63,6 +66,8 @@ const {todosarray,settodoarry}=React.useContext(todocontext);
   </Grid>
   <Grid xs={4}>
   <Button
+
+  disabled={addtask.length<3}
   onClick={()=>{
     const newtask={
         id:uuidv4(),

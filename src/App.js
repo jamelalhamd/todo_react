@@ -1,12 +1,22 @@
-
+import { ThemeProvider } from '@mui/material/styles';
 import './App.css';
 import { useState } from 'react';
 //import { v4 as uuidv4} from 'uuid'; 
 
 import {todocontext} from './Context/Todocontext';
 import Todolist from './Todolis';
+import { createTheme } from '@mui/material';
 function App() {
-
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: '#0B8307'
+      }
+    },
+    typography: {
+      fontSize: 20 // Set font size to 10px
+    }
+  });
 
  
   const todos = JSON.parse(localStorage.getItem('todosarray'));
@@ -30,6 +40,7 @@ function App() {
     justifyContent:'center',
     alignItems:'center' ,
     background:"#191b1f" ,
+    height:'100vh' ,
 
  
     
