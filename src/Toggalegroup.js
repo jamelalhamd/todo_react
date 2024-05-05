@@ -22,13 +22,15 @@ export default function Togglegroup() {
  {
 
   const completed = todos.filter((t) => t.iscompleted === true);
-  settodoarry(completed);
+  const data=completed??" ";
+  settodoarry(data);
  // setpointer("done");
 
  }
  function notcompletedtask() {
   const notcompleted = todos.filter((t) => t.iscompleted === false);
-  settodoarry(notcompleted);
+  const data=notcompleted??" ";
+  settodoarry(data);
   //setpointer("notdone");
 }
 

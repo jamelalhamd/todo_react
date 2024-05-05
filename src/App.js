@@ -19,7 +19,7 @@ function App() {
   });
 
  
-  const todos = JSON.parse(localStorage.getItem('todosarray'));
+  const todos = JSON.parse(localStorage.getItem('todosarray'))??[];
 
 /*
   const todos=[
