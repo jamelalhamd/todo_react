@@ -35,12 +35,15 @@ function App() {
      const [todosarray,settodoarry]=useState(todos);
 
      const [open, setOpen] = useState(false); 
+     const [message, setmessage] = useState("rrrrrrrrrrrrrrrrr"); 
 
 
-function showhideToast(){
+function showhideToast(message){
+  
   setOpen(true);
+  setmessage(message);
   setTimeout(function(){setOpen(false);
-  },3000);
+  },2000);
 
 }
 
@@ -57,9 +60,9 @@ function showhideToast(){
     
  <todocontext.Provider  value={{todosarray,settodoarry}}> 
 
- <ToastContext.Provider value={{showhideToast}}>
+ <ToastContext.Provider value={{showhideToast}} >
     <Todolist/>
-    <Mysnackbar open={open}/>
+    <Mysnackbar open={open} message={message}/>
     </ToastContext.Provider>
     </todocontext.Provider>
 

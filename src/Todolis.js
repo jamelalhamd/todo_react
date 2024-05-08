@@ -82,7 +82,7 @@ const {showhideToast}=React.useContext(ToastContext);
       settodoarry(updatetodosarray);
       setaddtask('');
       localStorage.setItem('todosarray',JSON.stringify(updatetodosarray));
-      showhideToast(true);
+showhideToast('you added a task sucessfully');
 
   }}
   

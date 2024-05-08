@@ -17,21 +17,28 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Button from '@mui/material/Button';
 import { todocontext ,} from './Context/Todocontext'
 import { useEffect } from 'react';
+import { ToastContext } from './Context/ToastContext';
 export default function Todo( {todo}) {
 
   const {todosarray,settodoarry}=React.useContext(todocontext);
 
   function handckick() {
+    
     const updatedTodos = todosarray.map((t) => {
       if (t.id === todo.id) {
        t.iscompleted= !t.iscompleted; 
+
+       t.iscompleted == true ?showhideToast( 'add to completed list'):showhideToast( 'add to uncompleted list');
+
       }
       return t;
+     
     });
-
+    
 
     settodoarry(updatedTodos);
     localStorage.setItem('todosarray',JSON.stringify(updatedTodos));
+   
   }
 
   function closedialog(){
@@ -49,7 +56,7 @@ const updateedtodo=todosarray.filter((t) => { return t.id !== todo.id; });
 settodoarry(updateedtodo);
 
 
-
+showhideToast('Task Deleted successfully');
 
 localStorage.setItem('todosarray',JSON.stringify(updateedtodo));
 
@@ -74,6 +81,8 @@ const [newtask,setnewtask]=React.useState(todo.title);
 
 
     });
+
+    const {showhideToast}=React.useContext(ToastContext);
   return (
     <Card className='todocard' sx={{ backgroundColor: '#283593', color: 'white', minWidth: 275 }}>
       <CardContent>
@@ -138,6 +147,7 @@ const [newtask,setnewtask]=React.useState(todo.title);
               setshowupdatedialog(false);
          
               localStorage.setItem('todosarray',JSON.stringify(updatedTodos));
+              showhideToast('Task updated successfully');
 
 
            }}
@@ -184,7 +194,7 @@ const [newtask,setnewtask]=React.useState(todo.title);
 
 
           setshowdeletedialog(true); 
-          
+    
        
 
            }}   className="iconbutton" aria-label="delete" style={{ color: '#8bc34a', backgroundColor: 'white', border: 'solid #8bc34a 3px'  }} >   
@@ -195,7 +205,7 @@ const [newtask,setnewtask]=React.useState(todo.title);
             </IconButton>
             <IconButton onClick={ ()=>{
               
-              
+         
 
 
               handckick()} } className='iconbutton' aria-label="done" style={{ color: '#8bc34a', backgroundColor: todo.iscompleted ? 'green' : 'white', border: 'solid #8bc34a 3px' }}>
