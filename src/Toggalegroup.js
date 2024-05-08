@@ -3,6 +3,7 @@ import './App.css'
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import { todocontext } from './Context/Todocontext';
+import { useMemo } from 'react';
 export default function Togglegroup() {
   const {todosarray,settodoarry}=React.useContext(todocontext);
 
@@ -17,15 +18,12 @@ export default function Togglegroup() {
  // setpointer("all");
 
  }
-
- function completetask ()
- {
-
-  const completed = todos.filter((t) => t.iscompleted === true);
+ function completetask() {
+  const completed = 
+    todos.filter((t) => t.iscompleted === true);
+  // Include todos as a dependency
   const data=completed??" ";
   settodoarry(data);
- // setpointer("done");
-
  }
  function notcompletedtask() {
   const notcompleted = todos.filter((t) => t.iscompleted === false);

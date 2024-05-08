@@ -6,6 +6,8 @@ import { useState } from 'react';
 import {todocontext} from './Context/Todocontext';
 import Todolist from './Todolis';
 import { createTheme } from '@mui/material';
+import Mysnackbar from './Mysnackbar';
+import { ToastContext } from './Context/ToastContext';
 function App() {
   const theme = createTheme({
     palette: {
@@ -32,8 +34,15 @@ function App() {
     */
      const [todosarray,settodoarry]=useState(todos);
 
-     
+     const [open, setOpen] = useState(false); 
 
+
+function showhideToast(){
+  setOpen(true);
+  setTimeout(function(){setOpen(false);
+  },3000);
+
+}
 
   return (
     <div className="App" style={{display:'flex',
@@ -47,8 +56,11 @@ function App() {
     }} >
     
  <todocontext.Provider  value={{todosarray,settodoarry}}> 
+
+ <ToastContext.Provider value={{showhideToast}}>
     <Todolist/>
-    
+    <Mysnackbar open={open}/>
+    </ToastContext.Provider>
     </todocontext.Provider>
 
 

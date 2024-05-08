@@ -1,6 +1,6 @@
 import * as React from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
-
+import { ToastContext } from './Context/ToastContext';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Card from '@mui/material/Card';
@@ -23,7 +23,7 @@ const {todosarray,settodoarry}=React.useContext(todocontext);
   ));
   
 
-
+const {showhideToast}=React.useContext(ToastContext);
   
   
 
@@ -73,7 +73,8 @@ const {todosarray,settodoarry}=React.useContext(todocontext);
         id:uuidv4(),
         title:addtask,
         task:'',
-        iscompleted:false
+        iscompleted:false,
+      
 
 
     }
@@ -81,7 +82,8 @@ const {todosarray,settodoarry}=React.useContext(todocontext);
       settodoarry(updatetodosarray);
       setaddtask('');
       localStorage.setItem('todosarray',JSON.stringify(updatetodosarray));
-;
+      showhideToast(true);
+
   }}
   
   variant="contained" style={{width:'100%' ,height:'100%'}}>Add Task </Button >
